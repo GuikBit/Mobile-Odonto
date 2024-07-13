@@ -8,16 +8,19 @@ import HomePaciente from './src/views/Paciente/HomePaciente';
 import HomeDentista from './src/views/Dentista/HomeDentista';
 import HomeConsulta from './src/views/Consulta/HomeConsulta';
 import HomeLogin from './src/views/Login/HomeLogin';
-import { Icon, PaperProvider } from 'react-native-paper';
+import { Icon, PaperProvider, MD3LightTheme as DefaultTheme } from 'react-native-paper';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { GlobalContext, GlobalProvider } from './src/globals/GlogalContext';
 import { AuthProvider } from './src/globals/AuthContext';
-import { StatusBar } from 'expo-status-bar';
 import FlashMessage from 'react-native-flash-message';
+import { StatusBar } from 'react-native';
+import { theme } from './src/globals/Theming';
+import HomeConfiguracao from './src/views/Configuracao/HomeConfiguracao';
 
 const Stack = createNativeStackNavigator();
 const Tab = createMaterialBottomTabNavigator();
+
 const queryClient = new QueryClient();
 
 const App: React.FC = () => {
@@ -25,7 +28,7 @@ const App: React.FC = () => {
 
   return (
     <>
-      <StatusBar style={settings.theming === 'light' || settings.theming === 'auto' ? "dark" : "light"} />
+      <StatusBar backgroundColor={settings.theming === 'light' || settings.theming === 'auto' ? '#174F80' : '#171B21'} />
       <FlashMessage
         titleStyle={{ fontSize: 20, fontWeight: "bold", textAlign: 'center', marginRight: 35, paddingTop: 2 }}
         textStyle={{ fontSize: 16, textAlign: 'center', fontWeight: '500', marginRight: 25 }}
@@ -34,7 +37,7 @@ const App: React.FC = () => {
         duration={1800}
         floating={true}
       />
-      <StackNavigator />
+      <StackNavigator />      
     </>
   );
 };
@@ -42,11 +45,11 @@ const App: React.FC = () => {
 const MainApp: React.FC = () => {
 
   return (
-    <PaperProvider>
+    <PaperProvider theme={theme}>
       <SafeAreaProvider>
         <QueryClientProvider client={queryClient}>
           <AuthProvider>
-            <GlobalProvider>
+            <GlobalProvider>              
               <App />
             </GlobalProvider>
           </AuthProvider>
@@ -155,9 +158,12 @@ function StackNavigator(){
     <Stack.Navigator initialRouteName="Main">
       <Stack.Screen name="Main" component={TabNavigator} options={{ headerShown: false }} />
       <Stack.Screen name="Login" component={HomeLogin} options={{ headerShown: false }} />
+      <Stack.Screen name="Config" component={HomeConfiguracao} options={{ headerShown: false}} />
     </Stack.Navigator>
   </NavigationContainer>
   )
 }
+
+
 
 export default MainApp;
