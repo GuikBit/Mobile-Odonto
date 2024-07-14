@@ -18,7 +18,14 @@ export const ThemingLight = {
     activeIndicatorBackground: '#112740',
 
     searchBackg: '#f2f8fd',
-    searcIcon: '#2070b4'
+    searcIcon: '#2070b4',
+
+    inputBorderColor: '#2070b4',
+    inputBorderSelectionColor: '#2070b4',
+    inputLabelColor: '#2070b4',
+    inputTextColor: '#232A33',
+    inputIconColor: '#2070b4',
+    inputError: '#a22c28',
 }
 
 export const ThemingDark = {
@@ -39,7 +46,14 @@ export const ThemingDark = {
     activeIndicatorBackground: '#2070b4',
 
     searchBackg: '#535D69',
-    searcIcon: '#e4eefa'
+    searcIcon: '#e4eefa',
+
+    inputBorderColor: '#2070b4',
+    inputBorderSelectionColor: '#2070b4',
+    inputLabelColor: '#2070b4',
+    inputTextColor: '#e4eefa',
+    inputIconColor: '#2070b4',
+    inputError: '#a22c28',
 }
 
 export const Constants ={

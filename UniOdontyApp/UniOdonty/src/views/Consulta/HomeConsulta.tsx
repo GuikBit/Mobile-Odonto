@@ -6,11 +6,14 @@ import HeaderConsulta from '../../components/Fragments/Header/HeaderConsulta';
 import { theme } from '../../globals/Theming';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import CustomTextInput from '../../components/Fragments/CustomTextInput';
+import { AuthContext } from '../../globals/AuthContext';
 
 
 const HomeConsulta: React.FC = () => {
     const navigation = useNavigation();
     const { mudarTheming, setSettings, settings, theming } = useContext(GlobalContext);
+  
     const [state, setState] = React.useState({ open: false });
 
     const onStateChange = ({ open }) => setState({ open });
@@ -68,8 +71,7 @@ const HomeConsulta: React.FC = () => {
         color={theming.iconActive}
         backdropColor={'#00000050'}
         onStateChange={onStateChange}
-        style={{zIndex: 4}}
-        
+        style={{zIndex: 4}}       
       />
     </Portal> 
   </PaperProvider>
