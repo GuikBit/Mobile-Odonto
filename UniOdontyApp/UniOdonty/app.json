@@ -16,7 +16,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/img/odontoWhite.png",
+        "foregroundImage": "./assets/img/odonto.png",
         "backgroundColor": "#ffffff"
       },
       "package": "com.guikbit.UniOdonty"
