@@ -10,19 +10,19 @@ const showCustomMessage = (descricao: string, type: any, dark: boolean) => {
     switch(type) {
         case 'success':
             //icon = props => <Image source={require("../../../assets/imagens/checkOutline.png")} tintColor={Colors.corDeFundo} {...props} />;
-            icon = <Image  source={require("../../../assets/imagens/check.png")} tintColor='#50AA46' style={{ width: 35, height: 35}} />
+            icon = <Image  source={require("../../../assets/img/check.png")} tintColor='#50AA46' style={{ width: 35, height: 35}} />
             backgroundColor = dark?'#0D1A0E':'#e5f3e5'
             textColor ='#50AA46'
             titulo = 'Sucesso!' 
             break;
         case 'error':
-            icon = props => <Image source={require("../../../assets/imagens/close.png")} tintColor={dark?'#DC2C28':'#cc3b36'} style={{ width: 35, height: 35}} />;
+            icon = props => <Image source={require("../../../assets/img/close.png")} tintColor={dark?'#DC2C28':'#cc3b36'} style={{ width: 35, height: 35}} />;
             backgroundColor = dark?'#210808':'#fce5e4';
             textColor = dark?'#DC2C28':'#cc3b36';
             titulo = 'Erro!'
             break;
         case 'warning': 
-            icon = props => <Image source={require("../../../assets/imagens/WarningTOutline.png")} tintColor={dark?'#cc8a26':'#b06a1e'} style={{ width: 35, height: 35}} />;
+            icon = props => <Image source={require("../../../assets/img/WarningTOutline.png")} tintColor={dark?'#cc8a26':'#b06a1e'} style={{ width: 35, height: 35}} />;
             backgroundColor = dark?'#210E08':'#f6eccb';
             textColor = dark?'#cc8a26':'#b06a1e';
             titulo = 'Aviso!'

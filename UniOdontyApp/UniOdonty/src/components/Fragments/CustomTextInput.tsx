@@ -6,7 +6,7 @@ import { GlobalContext } from '../../globals/GlogalContext';
 
 
 
-const CustomTextInput = ({label, error, iconLeft, iconRight, onChange, value, readOnly, borderBold, isSecure, handlerSenha, multLine, numLine, keyboardType, mask, maxLeng, height}) => {
+const CustomTextInput = ({label, error, iconLeft, iconRight, onChange, value, readOnly, borderBold, isSecure, handlerSenha, multLine, numLine, keyboardType, mask, maxLeng, height, bgLabel}) => {
 
     const { theming } = useContext(GlobalContext);
 
@@ -106,7 +106,7 @@ const CustomTextInput = ({label, error, iconLeft, iconRight, onChange, value, re
                     alignSelf: 'center',
                 }}
                 textColor={ theming.inputTextColor }
-                theme={{ colors: { background: theming.background } }}
+                theme={{ colors: { background:bgLabel? bgLabel : theming.background } }}
                 onChangeText={ onChange }
                 value={value}
                 readOnly={readOnly}            

@@ -17,15 +17,28 @@ import FlashMessage from 'react-native-flash-message';
 import { StatusBar } from 'react-native';
 import { theme } from './src/globals/Theming';
 import HomeConfiguracao from './src/views/Configuracao/HomeConfiguracao';
+import DetalhesPaciente from './src/views/Paciente/DetalhesPaciente';
 
 const Stack = createNativeStackNavigator();
 const Tab = createMaterialBottomTabNavigator();
+const PacienteStack = createNativeStackNavigator();
 
 const queryClient = new QueryClient();
 
 const App: React.FC = () => {
-  const { settings } = React.useContext(GlobalContext);
+  const { settings, setSettings } = React.useContext(GlobalContext);
+  
+  React.useEffect(()=>{
+    handlerTema();
+  },[])
 
+  const handlerTema = () => {
+    if (settings.theming === 'dark') {
+      setSettings({ ...settings, theming: 'light' });
+    } else {
+      setSettings({ ...settings, theming: 'dark' });
+    }
+  };
   return (
     <>
       <StatusBar backgroundColor={settings.theming === 'light' || settings.theming === 'auto' ? '#174F80' : '#171B21'} />
@@ -119,7 +132,7 @@ function TabNavigator() {
       />
       <Tab.Screen 
         name="Paciente" 
-        component={HomePaciente}
+        component={PacienteStackNavigator}
         options={{          
           tabBarIcon: ({color, focused }) => (
             <Icon 
@@ -155,7 +168,7 @@ function StackNavigator(){
 
   return(
   <NavigationContainer>
-    <Stack.Navigator initialRouteName="Main">
+    <Stack.Navigator initialRouteName="Login">
       <Stack.Screen name="Main" component={TabNavigator} options={{ headerShown: false }} />
       <Stack.Screen name="Login" component={HomeLogin} options={{ headerShown: false }} />
       <Stack.Screen name="Config" component={HomeConfiguracao} options={{ headerShown: false}} />
@@ -164,6 +177,16 @@ function StackNavigator(){
   )
 }
 
+
+
+function PacienteStackNavigator() {
+  return (
+    <PacienteStack.Navigator >
+      <PacienteStack.Screen name="HomePaciente" component={HomePaciente} options={{ headerShown: false }}/>
+      <PacienteStack.Screen name="DetalhesPaciente" component={DetalhesPaciente} options={{ headerShown: false }}/>
+    </PacienteStack.Navigator>
+  );
+}
 
 
 export default MainApp;
