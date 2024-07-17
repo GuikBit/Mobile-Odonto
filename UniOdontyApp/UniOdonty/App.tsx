@@ -18,10 +18,12 @@ import { StatusBar } from 'react-native';
 import { theme } from './src/globals/Theming';
 import HomeConfiguracao from './src/views/Configuracao/HomeConfiguracao';
 import DetalhesPaciente from './src/views/Paciente/DetalhesPaciente';
+import DetalhesConsulta from './src/views/Consulta/DetalhesConsulta';
 
 const Stack = createNativeStackNavigator();
 const Tab = createMaterialBottomTabNavigator();
 const PacienteStack = createNativeStackNavigator();
+const ConsultaStack = createNativeStackNavigator();
 
 const queryClient = new QueryClient();
 
@@ -34,9 +36,9 @@ const App: React.FC = () => {
 
   const handlerTema = () => {
     if (settings.theming === 'dark') {
-      setSettings({ ...settings, theming: 'light' });
-    } else {
       setSettings({ ...settings, theming: 'dark' });
+    } else {      
+      setSettings({ ...settings, theming: 'light' });
     }
   };
   return (
@@ -119,7 +121,7 @@ function TabNavigator() {
       />
       <Tab.Screen 
         name="Consulta" 
-        component={HomeConsulta} 
+        component={DentistaStackNavigator} 
         options={{
           tabBarIcon: ({color, focused  }) => (
             <Icon 
@@ -185,6 +187,15 @@ function PacienteStackNavigator() {
       <PacienteStack.Screen name="HomePaciente" component={HomePaciente} options={{ headerShown: false }}/>
       <PacienteStack.Screen name="DetalhesPaciente" component={DetalhesPaciente} options={{ headerShown: false }}/>
     </PacienteStack.Navigator>
+  );
+}
+
+function DentistaStackNavigator() {
+  return (
+    <ConsultaStack.Navigator >
+      <ConsultaStack.Screen name="HomeConsulta" component={HomeConsulta} options={{ headerShown: false }}/>
+      <ConsultaStack.Screen name="DetalhesConsulta" component={DetalhesConsulta} options={{ headerShown: false }}/>
+    </ConsultaStack.Navigator>
   );
 }
 

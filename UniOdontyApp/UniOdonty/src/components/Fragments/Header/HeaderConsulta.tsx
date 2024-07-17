@@ -1,15 +1,15 @@
 import { StyleSheet, Text, View } from 'react-native'
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Appbar, Icon, IconButton, Modal, Portal, Searchbar } from 'react-native-paper'
 import { GlobalContext } from '../../../globals/GlogalContext';
 import RNDateTimePicker, { DateTimePickerAndroid } from '@react-native-community/datetimepicker';
 import { useNavigation } from '@react-navigation/native';
 
 
-const HeaderConsulta = () => {
+const HeaderConsulta = ({filtro, setFiltro}) => {
     const { theming, useScaledFontSize, fontsSize} = useContext(GlobalContext);
     const navigation = useNavigation()
-    const [buscar, setBuscar] = useState('');
+    const [paciente, setPaciente] = useState('');
     const [data, setData] = useState('');
     const [dentista, setDentista] = useState('');   
     const [visible, setVisible] = React.useState(false);
@@ -20,8 +20,8 @@ const HeaderConsulta = () => {
     function valueSearchbar() {
         const values = [];
     
-        if (buscar !== '') {
-            values.push(buscar);
+        if (paciente !== '') {
+            values.push(paciente);
         }
     
         if (data) {
@@ -53,10 +53,26 @@ const HeaderConsulta = () => {
     };
 
     const clearSearchbar = () => {
-        setBuscar('');
+        setPaciente('');
         setData('');
         setDentista('');
     };
+    
+    useEffect(()=>{
+
+        setFiltro({...filtro, paciente: paciente, data: data, dentista: dentista})
+
+
+        // return (()=>{
+        //     setBuscar('');
+        //     setData('');
+        //     setDentista('');
+        // });
+
+    },[paciente, data, dentista])
+    const handerFiltro = () =>{
+        setFiltro({...filtro, buscar: paciente})
+    }
 
 
 
@@ -71,7 +87,7 @@ const HeaderConsulta = () => {
         <Appbar.Header style={{backgroundColor: theming.backgroundTab, justifyContent: 'space-around', borderBottomLeftRadius: 20, borderBottomRightRadius: 20}}>        
             <Searchbar
                 placeholder="Buscar..."
-                onChangeText={setBuscar}
+                onChangeText={setPaciente}
                 value={valueSearchbar()}
                 style={[styles.seach,{backgroundColor: theming.searchBackg, color: theming.searcIcon}]}
                 inputStyle={{paddingBottom: 20, color: theming.searcIcon}}   

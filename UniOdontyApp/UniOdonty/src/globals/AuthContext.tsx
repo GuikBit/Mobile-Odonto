@@ -1,6 +1,6 @@
 import { createContext, useState } from 'react';
 import { apiLogin } from '../services/Api/ApiAuth';
-import { removeToken } from '../hooks/TokenStore';
+import { removeToken, setToken } from '../hooks/TokenStore';
 
 
 export const AuthContext = createContext({});
@@ -8,8 +8,8 @@ export const AuthContext = createContext({});
 export const AuthProvider = ({children}) => {
 
   const [user, setUser] = useState({
-    login: null,
-    password: null, 
+    login: 'admin',
+    password: '123', 
         
   });
 
@@ -41,6 +41,8 @@ export const AuthProvider = ({children}) => {
       const response = await apiLogin(user);
 
       if(response){
+        const token = response.result;
+        setToken(token);  
         setUserLogged({...userLogged,
           id: response.usuario.id,
           nome: response.usuario.nome,

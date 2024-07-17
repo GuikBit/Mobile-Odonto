@@ -6,7 +6,8 @@ import { Button } from 'react-native-paper';
 
 const HomeDentista = () => {
   const { mudarTheming, setSettings, settings, theming } = useContext(GlobalContext);
-
+  //const { data, isLoading } = useGetDentistasAuth();
+  
   const handlerTema = () =>{
     setSettings({...settings, theming: 'dark'});
   }

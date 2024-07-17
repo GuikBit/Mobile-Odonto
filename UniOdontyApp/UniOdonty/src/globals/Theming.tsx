@@ -26,6 +26,16 @@ export const ThemingLight = {
     inputTextColor: '#232A33',
     inputIconColor: '#2070b4',
     inputError: '#a22c28',
+
+    cardBackg: '#ffffff',
+    cardIconeBg: '#e6e6e8',
+    cardText: '#7a7d7a',
+    cardAgendado: '#f98216',
+    cardAtendida: '#16a34a',
+    cardAtendimento: '#3B82F6',
+    cardAusente: '#dc2626',
+
+
 }
 
 export const ThemingDark = {
@@ -54,6 +64,14 @@ export const ThemingDark = {
     inputTextColor: '#e4eefa',
     inputIconColor: '#2070b4',
     inputError: '#a22c28',
+
+    cardBackg: '#171717',
+    cardIconeBg: '#444645',
+    cardText: '#afb1af',
+    cardAgendado: '#7c3412',
+    cardAtendido: '#16a34a',
+    cardAtendimento: '#3B82F6',
+    cardAusente: '#dc2626',
 }
 
 export const Constants ={

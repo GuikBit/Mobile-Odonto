@@ -10,8 +10,8 @@ import { useLogin } from '../../services/Query/QueryAuth';
 import showCustomMessage from '../../components/Fragments/FlashMensage';
 
 // const image = { uri: 'https://img.lovepik.com/background/20211029/medium/lovepik-simple-technology-mobile-phone-wallpaper-background-image_400290776.jpg' };
-const fundoB = '../../../assets/img/Fundo2.png';
-const fundoD = '../../../assets/img/FundoD.png';
+const fundoB = '../../../assets/img/FundoB3.png';
+const fundoD = '../../../assets/img/FundoD2.png';
 const HomeLogin = () => {
   const { mudarTheming, setSettings, settings, theming } = useContext(GlobalContext);
   const { login, user, setUser, userLogged } = useContext(AuthContext);
@@ -51,7 +51,7 @@ const HomeLogin = () => {
             navigation.replace('DetalhesDentista');
           } else{
             showCustomMessage("Bem vindo de volta...", "success", false);
-            navigation.navigate('Paciente',{ screen: 'HomePaciente' });
+            navigation.navigate('Main',{ screen: 'Consulta' });
           }
           setIsLoading(false);
         }else{
@@ -91,11 +91,11 @@ const HomeLogin = () => {
       >
         <ScrollView style={{ flex: 1}}>
 
-          <View style={{ justifyContent: 'center', alignItems: 'center', paddingVertical: 70 }}>
+          <View style={{ justifyContent: 'center', alignItems: 'center', paddingVertical: 40 }}>
             <Image style={styles.logo} source={require('../../../assets/img/odonto.png')} />
           </View>
 
-          <View style={[styles.containerForm, {backgroundColor: settings.theming === 'dark'? '#222222':'#e4e9ef'}]}>
+          <View style={[styles.containerForm, {backgroundColor: settings.theming === 'dark'? 'rgba(32, 112, 180, 0.15)':'"rgba(255, 255, 255, 0.45)"'}]}>
 
             <View style={{  }}>
               <CustomTextInput label="Login" iconLeft='account' error={inputErro.login} onChange={(e: any) => setUser({ ...user, login: e })} value={user.login} height={50} bgLabel={ settings.theming === 'dark'? '#222222':'#e4e9ef'} />
@@ -138,9 +138,9 @@ const styles = StyleSheet.create({
     marginVertical: 15,
     marginHorizontal: 25,
     padding: 35,
-    paddingTop: 55,
+    paddingTop: 75,
     borderRadius: 20,
-    elevation: 3
+
   },google:{
     width: 30,
     height: 30
