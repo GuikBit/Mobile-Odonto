@@ -34,7 +34,7 @@ export const ThemingLight = {
     cardAtendida: '#16a34a',
     cardAtendimento: '#3B82F6',
     cardAusente: '#dc2626',
-
+    cardInativo: '#EF4444'
 
 }
 
@@ -68,8 +68,8 @@ export const ThemingDark = {
     cardBackg: '#171717',
     cardIconeBg: '#444645',
     cardText: '#afb1af',
-    cardAgendado: '#7c3412',
-    cardAtendido: '#16a34a',
+    cardAgendado: '#b14c0c',
+    cardAtendida: '#16a34a',
     cardAtendimento: '#3B82F6',
     cardAusente: '#dc2626',
 }

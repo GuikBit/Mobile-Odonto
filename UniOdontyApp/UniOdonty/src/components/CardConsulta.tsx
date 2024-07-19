@@ -5,7 +5,7 @@ import { AuthContext } from '../globals/AuthContext';
 import { GlobalContext } from '../globals/GlogalContext';
 
 const CardConsulta = ({ consulta, onPress }) => {
-  const { userLogged } = useContext(AuthContext);
+  //const { userLogged } = useContext(AuthContext);
   const { theming } = useContext(GlobalContext);
 
   const dataAtual = new Date();
@@ -50,7 +50,18 @@ const CardConsulta = ({ consulta, onPress }) => {
       </View>
 
       <View style={{marginLeft: 60, paddingTop: 10, flexDirection: 'row', alignItems:  'center'}}>         
-        <Text style={[styles.nome, {color: theming.cardText}]}>{ consulta.paciente?.nome }</Text>
+        <Text style={[styles.nome, {color: theming.cardText}]}>
+        {
+          consulta.paciente && consulta.paciente.nome 
+            ? consulta.paciente.nome 
+            : consulta.nomePaciente 
+        }
+          </Text>
+          {consulta.nomePaciente &&(
+            <View style={{transform: [{ rotate: '20deg' }]}}>
+              <Icon source="lightning-bolt" size={18} color={theming.secondary}/>
+            </View>
+          )}
       </View>
 
       <View style={{marginTop: 7,marginLeft: 73, paddingBottom: 10, flexDirection: 'row', alignItems:  'center'}}>
@@ -59,6 +70,7 @@ const CardConsulta = ({ consulta, onPress }) => {
 
         <Icon source="clock-outline" size={16} color='#7a7d7a'/>
         <Text style={[styles.texto, {color: theming.cardText}]}>{ formattedTime } - { formattedTimeTermino } </Text>
+        
       </View>
       <View style={{position: 'absolute', top: 25, right: 10}}>
         <Icon source="tooth" size={20} color={consulta.dentista.corDentista+'c9'}  />
@@ -74,9 +86,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 7,
     marginTop: 10,
     borderRadius: 10,
-    borderLeftWidth: 7,
-    
-    //borderWidth: 0.3,   
+    borderLeftWidth: 7,  
     justifyContent: 'space-around',
   },
   texto: {

@@ -93,7 +93,7 @@ const HeaderConsulta = ({filtro, setFiltro}) => {
                 inputStyle={{paddingBottom: 20, color: theming.searcIcon}}   
                 placeholderTextColor={theming.searcIcon}
                 readOnly={data !== '' || dentista !== ''? true : false}  
-                onClearIconPress={clearSearchbar}   
+                onClearIconPress={ clearSearchbar }
                 iconColor={theming.searcIcon}  
                 loading={false}
             />
@@ -107,9 +107,9 @@ const HeaderConsulta = ({filtro, setFiltro}) => {
 
         <Portal>
             <Modal visible={visible} onDismiss={hideModal} contentContainerStyle={styles.containerStyle}>
-            <Text>Example Modal.  Click outside this area to dismiss. teste</Text>
+                <Text>Example Modal.  Click outside this area to dismiss. teste</Text>
             </Modal>
-      </Portal>
+        </Portal>
     </>
   )
 

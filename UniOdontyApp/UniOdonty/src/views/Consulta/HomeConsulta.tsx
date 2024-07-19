@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { GlobalContext } from '../../globals/GlogalContext';
-import { ActivityIndicator, FAB, PaperProvider, Portal } from 'react-native-paper';
+import { ActivityIndicator, AnimatedFAB, FAB, PaperProvider, Portal } from 'react-native-paper';
 import HeaderConsulta from '../../components/Fragments/Header/HeaderConsulta';
 import { theme } from '../../globals/Theming';
 import { useNavigation } from '@react-navigation/native';
@@ -38,7 +38,7 @@ const HomeConsulta: React.FC = () => {
     data: '',
     dentista: ''
   });
-
+  const [isExtended, setIsExtended] = useState(true);
   useEffect(() => {
     if (isSuccess) {
       buscarConsulta();
@@ -88,6 +88,14 @@ const HomeConsulta: React.FC = () => {
     }
   };
 
+  
+  const onScroll = ({ nativeEvent }) => {
+    const currentScrollPosition =
+      Math.floor(nativeEvent?.contentOffset?.y) ?? 0;
+
+    setIsExtended(currentScrollPosition <= 0);
+  };
+
   return (
     <GestureHandlerRootView style={{ flex: 1, backgroundColor: theming.background }}>           
       <HeaderConsulta filtro={filtro} setFiltro={setFiltro} />
@@ -98,10 +106,11 @@ const HomeConsulta: React.FC = () => {
         </View>
       ) : (
         <>   
-          <Text>{filtro.paciente}</Text>         
-          <FlatList            
+                
+          <FlatList
             data={dataFiltro.length === 0 ? data : dataFiltro}
             keyExtractor={(item) => item.id.toString()}
+            onScroll={onScroll}
             renderItem={({ item }) => (
               <CardConsulta
                 consulta={item}
@@ -112,7 +121,18 @@ const HomeConsulta: React.FC = () => {
             )}
           />
         </>
-      )}        
+      )}    
+      <AnimatedFAB
+        icon={'plus'}
+        label={'Novo'}
+        extended={isExtended}
+        onPress={() => console.log('Pressed')}
+        visible={true}
+        animateFrom={'right'}
+        iconMode={'dynamic'}
+        color={theming.iconActive}
+        style={[{position:'absolute', bottom: 15, right: 10, backgroundColor: theming.primary, color: theming.iconActive }, ]}
+      />     
     </GestureHandlerRootView>
   );
 };
