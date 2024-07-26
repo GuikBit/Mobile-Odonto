@@ -68,7 +68,7 @@ const HomePaciente = () => {
         icon={'plus'}
         label={'Novo'}
         extended={isExtended}
-        onPress={() => console.log('Pressed')}
+        onPress={() => {navigation.navigate('NovoPaciente')}}
         visible={true}
         animateFrom={'right'}
         iconMode={'dynamic'}

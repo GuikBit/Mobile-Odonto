@@ -22,7 +22,7 @@ const CardPaciente = ({ usuario, onPress }) => {
   return (
     <Card style={[styles.card, {backgroundColor: theming.cardBackg, borderColor: usuario.ativo? theming.primary : theming.cardInativo},]} onPress={onPress}>
         <View style={{flexDirection: 'row', alignItems:  'center', marginLeft: 100, marginVertical: 10}}>
-            <Icon source="account-outline" size={20} color='#7a7d7a' />
+            <Icon source="account" size={20} color='#7a7d7a' />
             <Text style={[styles.nome, {color: theming.cardText}]}>{usuario.nome}</Text>
         </View>
 
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 7,
     marginTop: 10,
     borderRadius: 10,
-    borderLeftWidth: 7,  
+    borderLeftWidth: 5,  
     justifyContent: 'space-around',
   },
 

@@ -24,7 +24,7 @@ const CardConsulta = ({ consulta, onPress }) => {
 
     const hoursPrev = datePrev.getHours().toString().padStart(2, '0');
     const minutesPrev = datePrev.getMinutes().toString().padStart(2, '0');
-    //`${day}/${month}/${year}`
+    
     return {
       formattedDate: `${day}/${month}/${year}`,
       formattedTime: `${hours}:${minutes}`,
@@ -46,7 +46,7 @@ const CardConsulta = ({ consulta, onPress }) => {
   return (
     <Card style={[ styles.card, status.style, {backgroundColor: theming.cardBackg} ]} onPress={onPress}>
       <View style={{position: 'absolute', top: 5, left: 5}}>
-        <Icon source="account-outline" size={60} color={theming.cardIconeBg}  />
+        <Icon source="account" size={60} color={theming.cardIconeBg}  />
       </View>
 
       <View style={{marginLeft: 60, paddingTop: 10, flexDirection: 'row', alignItems:  'center'}}>         
@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 7,
     marginTop: 10,
     borderRadius: 10,
-    borderLeftWidth: 7,  
+    borderLeftWidth: 5,  
     justifyContent: 'space-around',
   },
   texto: {
@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
     marginRight: 13
 
   },nome:{
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: 'bold',
     marginHorizontal: 3
   },

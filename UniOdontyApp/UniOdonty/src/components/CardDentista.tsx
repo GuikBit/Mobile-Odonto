@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
         marginHorizontal: 7,
         marginTop: 10,
         borderRadius: 10,
-        borderLeftWidth: 7,  
+        borderLeftWidth: 5,  
         justifyContent: 'space-around',
       },
     

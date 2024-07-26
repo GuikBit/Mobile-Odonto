@@ -28,13 +28,14 @@ export const ThemingLight = {
     inputError: '#a22c28',
 
     cardBackg: '#ffffff',
-    cardIconeBg: '#e6e6e8',
+    cardIconeBg: '#EBEBED',
     cardText: '#7a7d7a',
     cardAgendado: '#f98216',
     cardAtendida: '#16a34a',
     cardAtendimento: '#3B82F6',
     cardAusente: '#dc2626',
-    cardInativo: '#EF4444'
+    cardInativo: '#EF4444',
+    linebtn: '#000'
 
 }
 
@@ -58,11 +59,11 @@ export const ThemingDark = {
     searchBackg: '#535D69',
     searcIcon: '#e4eefa',
 
-    inputBorderColor: '#2070b4',
-    inputBorderSelectionColor: '#2070b4',
-    inputLabelColor: '#2070b4',
+    inputBorderColor: '#232A33',
+    inputBorderSelectionColor: '#232A33',
+    inputLabelColor: '#232A33',
     inputTextColor: '#e4eefa',
-    inputIconColor: '#2070b4',
+    inputIconColor: '#232A33',
     inputError: '#a22c28',
 
     cardBackg: '#171717',
@@ -72,6 +73,7 @@ export const ThemingDark = {
     cardAtendida: '#16a34a',
     cardAtendimento: '#3B82F6',
     cardAusente: '#dc2626',
+    linebtn: '#e4eefa'
 }
 
 export const Constants ={

@@ -1,0 +1,189 @@
+import React, {FC, useState, ReactElement, useContext} from 'react';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  ViewStyle,
+  TextStyle,
+  ScrollView,
+} from 'react-native';
+import {Button, TextInput } from "react-native-paper";
+import Icon from "react-native-vector-icons/FontAwesome";
+
+export interface StepperProps {
+  active: number;
+  content: ReactElement[];
+  onNext: Function;
+  onBack: Function;
+  onFinish: Function;
+  wrapperStyle?: ViewStyle;
+  stepStyle?: ViewStyle;
+  stepTextStyle?: TextStyle;
+  buttonStyle?: ViewStyle;
+  buttonTextStyle?: TextStyle;
+  showButton?: boolean;
+  lineBtn?: string;
+}
+
+const search = (keyName: number, myArray: number[]): boolean => {
+  let value = false;
+  myArray.map((val) => {
+    if (val === keyName) {
+      value = true;
+    }
+  });
+  return value;
+};
+
+const icons = [
+  <TextInput.Icon icon="account" color="#FFFFFF" size={ 16 }/>,
+  <TextInput.Icon icon="account-multiple-plus" color="#FFFFFF" size={ 16 }/>,
+  <TextInput.Icon icon="map-marker-radius" color="#FFFFFF" size={ 16 }/>,
+  <Icon name="user-md"  size={ 16 } color="#FFFFFF" />
+];
+
+const Stepper: FC<StepperProps> = (props) => {
+  const {
+    active,
+    content,
+    onBack,
+    onNext,
+    onFinish,
+    wrapperStyle,
+    stepStyle,
+    stepTextStyle,
+    buttonStyle,
+    buttonTextStyle,
+    showButton = true,
+    lineBtn  
+  } = props;
+  const [step, setStep] = useState<number[]>([0]);
+  const pushData = (val: number) => {
+    setStep((prev) => [...prev, val]);
+  };
+
+  const removeData = () => {
+    setStep((prev) => {
+      prev.pop();
+      return prev;
+    });
+  };
+  return (
+    <View style={wrapperStyle}>
+      <View
+        style={{
+          flexDirection: 'row',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}>
+        {content.map((_, i) => {
+          return (
+            <React.Fragment key={i}>
+              {i !== 0 && (
+                <View
+                  style={{
+                    flex: 1,
+                    height: 1,
+                    backgroundColor: search(i, step)? lineBtn:lineBtn+'30',
+                    opacity: 1,
+                    marginHorizontal: 10,
+                  }}
+                />
+              )}
+              <View
+                style={[
+                  {
+                    backgroundColor: '#1976d2',
+                    width: 30,
+                    height: 30,
+                    borderRadius: 30,
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    opacity: search(i, step) ? 1 : 0.3,
+                  },
+                  stepStyle,
+                ]}>
+                {search(i, step) ? (
+                  <Text
+                    style={[
+                      {
+                        color: '#FFFFFF',
+                      },
+                      stepTextStyle,
+                    ]}>
+                    {icons[i]}
+                  </Text>
+                ) : (
+                  <Text
+                    style={[
+                      {
+                        color: 'white',
+                      },
+                      stepTextStyle,
+                    ]}>
+                    {icons[i]}
+                  </Text>
+                )}
+              </View>
+            </React.Fragment>
+          );
+        })}
+      </View>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        {content[active]}
+      </ScrollView>
+      {showButton && (
+        <View
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'space-around',
+            marginTop: 30
+          }}>
+          {active !== 0 && (
+            <Button icon="arrow-left" textColor="#FFFFFF" mode="contained" labelStyle={{fontSize: 18}} onPress={ () => {
+                removeData();
+                onBack();
+              }} style={{
+              backgroundColor: 'grey', //Cor de Fundo
+              width: 130,
+              paddingTop: 2,
+              borderRadius: 50,
+              marginTop: 20
+            }}>
+              Voltar
+            </Button>
+          )}
+          {content.length - 1 !== active && (
+            <Button icon="arrow-right" textColor="#FFFFFF" mode="contained" contentStyle={{flexDirection: 'row-reverse'}} labelStyle={{fontSize: 18}} onPress={ () => {
+              pushData(active + 1);
+              onNext();
+            }} style={{
+              backgroundColor: '#2070B4', //Cor de Fundo
+              width: 130,
+              paddingTop: 2,
+              borderRadius: 50,
+              marginTop: 20
+            }}>
+              Próximo
+            </Button>
+          )}
+          {content.length - 1 === active && (
+            <Button icon="content-save" textColor="#FFFFFF" mode="contained" contentStyle={{flexDirection: 'row-reverse'}} labelStyle={{fontSize: 18}} onPress={ () => {
+              onFinish()
+            }} style={{
+              backgroundColor: '#198754', //Cor de Fundo
+              width: 120,
+              paddingTop: 2,
+              borderRadius: 50,
+              marginTop: 20
+            }}>
+              Salvar
+            </Button>
+          )}
+        </View>
+      )}
+    </View>
+  );
+};
+
+export default Stepper;

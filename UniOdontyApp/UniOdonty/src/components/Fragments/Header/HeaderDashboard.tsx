@@ -99,7 +99,7 @@ const HeaderDashboard = () => {
             </View>
         </Appbar.Header>
         <View style={{position: 'absolute', top: 0, right:5, zIndex: 2}}>
-            <IconButton icon='menu' size={22} iconColor={theming.iconActive} onPress={()=>{navigation.navigate('Config')}} />
+            <IconButton icon='cog' size={22} iconColor={theming.iconActive} onPress={()=>{navigation.navigate('Config')}} />
         </View>
         <Portal>
             <Modal visible={visible} onDismiss={hideModal} contentContainerStyle={styles.containerStyle}>

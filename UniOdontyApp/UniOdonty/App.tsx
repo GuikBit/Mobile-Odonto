@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, useFocusEffect, useIsFocused, useNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import HomeAdm from './src/views/Adm/HomeAdm';
@@ -19,6 +19,7 @@ import { theme } from './src/globals/Theming';
 import HomeConfiguracao from './src/views/Configuracao/HomeConfiguracao';
 import DetalhesPaciente from './src/views/Paciente/DetalhesPaciente';
 import DetalhesConsulta from './src/views/Consulta/DetalhesConsulta';
+import NovoPaciente from './src/views/Paciente/NovoPaciente';
 
 const Stack = createNativeStackNavigator();
 const Tab = createMaterialBottomTabNavigator();
@@ -173,7 +174,7 @@ function StackNavigator(){
     <Stack.Navigator initialRouteName="Login">
       <Stack.Screen name="Main" component={TabNavigator} options={{ headerShown: false }} />
       <Stack.Screen name="Login" component={HomeLogin} options={{ headerShown: false }} />
-      <Stack.Screen name="Config" component={HomeConfiguracao} options={{ headerShown: false}} />
+      <Stack.Screen name="Config" component={HomeConfiguracao} options={{ headerShown: false, animation: 'slide_from_right'}} />
     </Stack.Navigator>
   </NavigationContainer>
   )
@@ -182,10 +183,23 @@ function StackNavigator(){
 
 
 function PacienteStackNavigator() {
+  const navigation = useNavigation();
+
+  // React.useEffect(()=>{
+  //   console.log("Entrei aqui")
+  //   if(navigation.navigate.name.toString() !== 'HomePaciente'){
+  //     navigation.reset({
+  //       index: 0,
+  //       routes: [{ name: 'HomePaciente' }],
+  //     });
+  //   }
+  // },[])
+  
   return (
-    <PacienteStack.Navigator >
+    <PacienteStack.Navigator initialRouteName='HomePaciente'>
       <PacienteStack.Screen name="HomePaciente" component={HomePaciente} options={{ headerShown: false }}/>
       <PacienteStack.Screen name="DetalhesPaciente" component={DetalhesPaciente} options={{ headerShown: false }}/>
+      <PacienteStack.Screen name="NovoPaciente" component={NovoPaciente} options={{ headerShown: false, animation: 'fade_from_bottom' }}/>
     </PacienteStack.Navigator>
   );
 }
