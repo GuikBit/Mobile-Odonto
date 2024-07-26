@@ -7,7 +7,7 @@ const CadastroEndereco = ({subTitulo}) => {
     const { theming, settings, paciente, setPaciente, useScaledFontSize, fontsSize } = useContext(GlobalContext);
 
   return (
-    <View style={{flex: 1, backgroundColor: theming.background, marginTop: 25 }}>
+    <View style={{flex: 1, backgroundColor: theming.background, marginTop: 25, paddingVertical: 5 }}>
       <Text style={[styles.titulo, { fontSize: 24, color: theming.primary}]}>{subTitulo}</Text>
       <CustomTextInput label="CEP" iconLeft='map-marker-radius' onChange={(e: any) => setPaciente({ ...paciente, endereco: { ...paciente.endereco, cep: e }})} value={paciente.endereco.cep} height={45} bgLabel={ settings.theming === 'dark'? '#222222':'#e4e9ef'} />
       <CustomTextInput label="Cidade" iconLeft='city' onChange={(e: any) => setPaciente({ ...paciente, endereco: { ...paciente.endereco, cidade: e }})} value={paciente.endereco.cep} height={45} bgLabel={ settings.theming === 'dark'? '#222222':'#e4e9ef'} />

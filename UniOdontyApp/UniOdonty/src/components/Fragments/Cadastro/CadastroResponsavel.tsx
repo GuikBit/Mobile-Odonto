@@ -8,7 +8,7 @@ const CadastroResponsavel = ({subTitulo}) => {
 
 
   return (
-    <View style={{flex: 1, backgroundColor: theming.background, marginTop:25 }}>
+    <View style={{flex: 1, backgroundColor: theming.background, marginTop:25, paddingVertical: 5 }}>
        <Text style={[styles.titulo, { fontSize: 24, color: theming.primary}]}>{subTitulo}</Text>
       <CustomTextInput label="Nome" iconLeft='pencil' onChange={(e: any) => setPaciente({ ...paciente, responsavel: { ...paciente.responsavel, nome: e }})} value={paciente.responsavel.nome} height={45} bgLabel={ settings.theming === 'dark'? '#222222':'#e4e9ef'} />
       <CustomTextInput label="CPF" iconLeft='card-account-details' onChange={(e: any) => setPaciente({ ...paciente, responsavel: { ...paciente.responsavel, cpf: e }})} value={paciente.responsavel.cpf} height={45} bgLabel={ settings.theming === 'dark'? '#222222':'#e4e9ef'} />

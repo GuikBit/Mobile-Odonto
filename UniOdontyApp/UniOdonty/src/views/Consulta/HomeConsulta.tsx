@@ -151,7 +151,7 @@ const HomeConsulta: React.FC = () => {
         icon={'plus'}
         label={'Novo'}
         extended={isExtended}
-        onPress={() => console.log('Pressed')}
+        onPress={() => navigation.navigate('Login')}
         visible={true}
         animateFrom={'right'}
         iconMode={'dynamic'}

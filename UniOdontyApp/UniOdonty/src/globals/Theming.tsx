@@ -59,11 +59,11 @@ export const ThemingDark = {
     searchBackg: '#535D69',
     searcIcon: '#e4eefa',
 
-    inputBorderColor: '#232A33',
-    inputBorderSelectionColor: '#232A33',
-    inputLabelColor: '#232A33',
-    inputTextColor: '#e4eefa',
-    inputIconColor: '#232A33',
+    inputBorderColor: '#c8ddf5',
+    inputBorderSelectionColor: '#c8ddf5',
+    inputLabelColor: '#e4eefa',
+    inputTextColor: '#c8ddf5',
+    inputIconColor: '#c8ddf5',
     inputError: '#a22c28',
 
     cardBackg: '#171717',

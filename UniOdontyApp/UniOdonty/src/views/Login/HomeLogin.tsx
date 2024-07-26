@@ -95,28 +95,28 @@ const HomeLogin = () => {
             <Image style={styles.logo} source={require('../../../assets/img/odonto.png')} />
           </View>
 
-          <View style={[styles.containerForm, {backgroundColor: settings.theming === 'dark'? 'rgba(32, 112, 180, 0.15)':'"rgba(255, 255, 255, 0.45)"'}]}>
+          <View style={[styles.containerForm, {backgroundColor: settings.theming === 'dark'? 'rgba(32, 112, 180, 0.25)':'"rgba(255, 255, 255, 0.45)"'}]}>
 
             <View style={{  }}>
               <CustomTextInput label="Login" iconLeft='account' error={inputErro.login} onChange={(e: any) => setUser({ ...user, login: e })} value={user.login} height={50} bgLabel={ settings.theming === 'dark'? '#222222':'#e4e9ef'} />
               <CustomTextInput label="Senha" iconLeft='key' iconRight={isSenha ? "eye" : "eye-off"} error={inputErro.password} onChange={(e: any) => setUser({ ...user, password: e })} value={user.password} isSecure={isSenha} handlerSenha={() => { setIsSenha(!isSenha) }} height={50} bgLabel={ settings.theming === 'dark'? '#222222':'#e4e9ef'} />
             </View>
 
-            <View style={{ flexDirection: 'row', justifyContent: 'space-around', marginTop: 50 }}>
+            <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 50 }}>
               {/* <Button onPress={handlerTema} mode='contained' icon='theme-light-dark'>Modo</Button> */}
               <Button onPress={() => { }} mode='contained' elevation={3} labelStyle={{fontSize: 16}} icon='account-plus'>Cadastrar</Button>
               <Button onPress={()=>{handlerLogin()}} mode='contained' elevation={3} labelStyle={{fontSize: 16}} icon='login' loading={isLoading}>Acessar</Button>
             </View>
 
             <View style={{flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', marginTop: 35}}>
-              <View style={{width: 45, height:45, justifyContent: 'center', alignItems: 'center', elevation: 3, backgroundColor: '#FFF', borderRadius: 50}}>
+              <View style={{width: 35, height:35, justifyContent: 'center', alignItems: 'center', elevation: 3, backgroundColor: settings.theming === 'dark'? 'rgba(32, 112, 180, 0.50)':'"rgba(255, 255, 255)"', borderRadius: 50}}>
                 <Image style={styles.google} source={{uri:'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/480px-Google_%22G%22_logo.svg.png'}} />
               </View>
-              <View style={{width: 45, height:45, justifyContent: 'center', alignItems: 'center',elevation: 3, backgroundColor: '#FFF', borderRadius: 50}}>
+              <View style={{width: 35, height:35, justifyContent: 'center', alignItems: 'center',elevation: 3, backgroundColor: settings.theming === 'dark'? 'rgba(32, 112, 180, 0.50)':'"rgba(255, 255, 255)"', borderRadius: 50}}>
                 <Image style={styles.insta} source={{uri:'https://images.vexels.com/media/users/3/137197/isolated/preview/fb944c570182b6e89eb21f41f8c4522b-silhueta-colorida-do-instagram.png'}} />
               </View>
-              <View style={{width: 45, height:45, justifyContent: 'center', alignItems: 'center',elevation: 3, backgroundColor: '#FFF', borderRadius: 50}}>
-              <Image style={styles.face} source={{uri:'https://static.vecteezy.com/system/resources/previews/018/930/476/non_2x/facebook-logo-facebook-icon-transparent-free-png.png'}} />
+              <View style={{width: 35, height:35, justifyContent: 'center', alignItems: 'center',elevation: 3, backgroundColor: settings.theming === 'dark'? 'rgba(32, 112, 180, 0.50)':'"rgba(255, 255, 255)"', borderRadius: 50}}>
+                <Image style={styles.face} source={{uri:'https://static.vecteezy.com/system/resources/previews/018/930/476/non_2x/facebook-logo-facebook-icon-transparent-free-png.png'}} />
               </View>              
             </View>
           </View>
@@ -142,14 +142,14 @@ const styles = StyleSheet.create({
     borderRadius: 20,
 
   },google:{
-    width: 30,
-    height: 30
+    width: 25,
+    height: 25
   }, insta:{
-    width: 35,
-    height: 35,
+    width: 30,
+    height: 30,
 
   }, face:{
-    width: 50,
-    height: 50
+    width: 43,
+    height: 43
   }
 });

@@ -9,7 +9,7 @@ const CadastroPaciente = ({subTitulo}) => {
 
 
   return (
-    <View style={{flex: 1, backgroundColor: theming.background , marginTop: 25 }}>
+    <View style={{flex: 1, backgroundColor: theming.background , marginTop: 25, paddingVertical: 5 }}>
 
       <Text style={[styles.titulo, { fontSize: 24, color: theming.primary}]}>{subTitulo}</Text>
 
