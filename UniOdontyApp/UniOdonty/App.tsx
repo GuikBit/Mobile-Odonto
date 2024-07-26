@@ -171,7 +171,7 @@ function StackNavigator(){
 
   return(
   <NavigationContainer>
-    <Stack.Navigator initialRouteName="Login">
+    <Stack.Navigator initialRouteName="Main">
       <Stack.Screen name="Main" component={TabNavigator} options={{ headerShown: false }} />
       <Stack.Screen name="Login" component={HomeLogin} options={{ headerShown: false }} />
       <Stack.Screen name="Config" component={HomeConfiguracao} options={{ headerShown: false, animation: 'slide_from_right'}} />

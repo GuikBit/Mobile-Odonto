@@ -29,8 +29,8 @@ const CardDentista = ({ usuario, onPress }) => {
             <View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
                 <Icon source="calendar" size={16} color="#7a7d7a" />
                 <Text style={[styles.texto, {color: theming.cardText }]}>
-                    
-                    {formataData()}
+                    {usuario.dataNascimento}
+                    {/* {formataData()} */}
                 </Text>
             </View>
           
