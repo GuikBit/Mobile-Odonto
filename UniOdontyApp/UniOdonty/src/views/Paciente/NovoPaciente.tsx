@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { ScrollView, StyleSheet, Text, View } from 'react-native'
 import React, { useContext, useState } from 'react'
 import Header from '../../components/Fragments/Header/Header'
 import { GlobalContext } from '../../globals/GlogalContext'
@@ -8,6 +8,7 @@ import Stepper from 'react-native-stepper-ui';
 import CadastroResponsavel from '../../components/Fragments/Cadastro/CadastroResponsavel'
 import CadastroEndereco from '../../components/Fragments/Cadastro/CadastroEndereco'
 import CadastroAnamnese from '../../components/Fragments/Cadastro/CadastroAnamnese'
+import { isValidIcon } from 'react-native-paper/lib/typescript/components/Icon'
 
 const NovoPaciente = () => {
 
@@ -72,24 +73,36 @@ const NovoPaciente = () => {
   //     }
       
   //   }
+  const isValidInfoPessoal = () => {
+    return true;
+  }
+
+  const isValidForm = () =>{
+    if(active === 1){
+      return isValidInfoPessoal();
+    }else if(active === 2){
+
+    }
+  }
 
   return (
     <View style={{flex: 1, backgroundColor: theming.background}}>
       <Header titulo="Novo Paciente" voltar={true}  config={false}/>
 
-      <View style={{marginHorizontal: 20, marginVertical: 40}}>
+      <ScrollView style={{paddingHorizontal: 20, paddingVertical: 20}}>
         <Stepper
           active={active}
           content={content}
           onBack={() => setActive((p) => p - 1)}
           onFinish={handlePostPaciente}
-          onNext={() => setActive((p) => p + 1)}
+          onNext={isValidForm()? () => {setActive((p) => p + 1)}: () => {}}
           buttonStyle={styles.btn}
           buttonTextStyle={styles.btnText}
           stepStyle={styles.teste}
           lineBtn={theming.linebtn}
+          //isValidForm={isValidForm}
         />
-      </View>
+      </ScrollView>
     </View>
   )
 }
@@ -118,12 +131,5 @@ const styles = StyleSheet.create({
   },
   teste: {
     backgroundColor: '#2070B4',
-  }, 
-  titulo: {
-
-  }, titulo:{
-    fontWeight: 600,
-    alignSelf: 'center',
-    
-}
+  }
 })

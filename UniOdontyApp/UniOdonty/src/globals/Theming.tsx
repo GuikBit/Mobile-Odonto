@@ -35,7 +35,7 @@ export const ThemingLight = {
     cardAtendimento: '#3B82F6',
     cardAusente: '#dc2626',
     cardInativo: '#EF4444',
-    linebtn: '#000'
+    linebtn: '#000000'
 
 }
 
