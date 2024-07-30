@@ -171,10 +171,13 @@ function StackNavigator(){
 
   return(
   <NavigationContainer>
-    <Stack.Navigator initialRouteName="Main">
+    <Stack.Navigator initialRouteName="Login">
       <Stack.Screen name="Main" component={TabNavigator} options={{ headerShown: false }} />
       <Stack.Screen name="Login" component={HomeLogin} options={{ headerShown: false }} />
       <Stack.Screen name="Config" component={HomeConfiguracao} options={{ headerShown: false, animation: 'slide_from_right'}} />
+      <Stack.Screen name="DetalhesPaciente" component={DetalhesPaciente} options={{ headerShown: false }}/>
+      <Stack.Screen name="NovoPaciente" component={NovoPaciente} options={{ headerShown: false, animation: 'fade_from_bottom' }}/>
+      <Stack.Screen name="DetalhesConsulta" component={DetalhesConsulta} options={{ headerShown: false }}/>
     </Stack.Navigator>
   </NavigationContainer>
   )
@@ -198,8 +201,8 @@ function PacienteStackNavigator() {
   return (
     <PacienteStack.Navigator initialRouteName='HomePaciente'>
       <PacienteStack.Screen name="HomePaciente" component={HomePaciente} options={{ headerShown: false }}/>
-      <PacienteStack.Screen name="DetalhesPaciente" component={DetalhesPaciente} options={{ headerShown: false }}/>
-      <PacienteStack.Screen name="NovoPaciente" component={NovoPaciente} options={{ headerShown: false, animation: 'fade_from_bottom' }}/>
+      {/* <PacienteStack.Screen name="DetalhesPaciente" component={DetalhesPaciente} options={{ headerShown: false }}/>
+      <PacienteStack.Screen name="NovoPaciente" component={NovoPaciente} options={{ headerShown: false, animation: 'fade_from_bottom' }}/> */}
     </PacienteStack.Navigator>
   );
 }

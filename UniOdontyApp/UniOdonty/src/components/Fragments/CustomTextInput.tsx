@@ -1,12 +1,12 @@
 import React, { Component, useContext } from 'react'
 import { StyleSheet, View } from 'react-native'
-import { HelperText, Text, TextInput } from 'react-native-paper';
+import { ActivityIndicator, HelperText, Text, TextInput } from 'react-native-paper';
 import MaskInput, { Masks } from 'react-native-mask-input';
 import { GlobalContext } from '../../globals/GlogalContext';
 
 
 
-const CustomTextInput = ({label, error, errorLabel, iconLeft, iconRight, onChange, value, readOnly, borderBold, isSecure, handlerSenha, multLine, numLine, keyboardType, mask, maxLeng, height, bgLabel, onFocus, onBlur}) => {
+const CustomTextInput = ({label, error, errorLabel, iconLeft, iconRight, onChange, value, readOnly, borderBold, isSecure, handlerSenha, multLine, numLine, keyboardType, mask, maxLeng, height, bgLabel, isLoadingRight}) => {
 
     const { theming } = useContext(GlobalContext);
 
@@ -16,7 +16,7 @@ const CustomTextInput = ({label, error, errorLabel, iconLeft, iconRight, onChang
         <TextInput
           mode="outlined"
           keyboardType={keyboardType}
-          label={<Text style={{ color: error ? '#a22c28' : theming.formLabel }}>{label}</Text>}
+          label={<Text style={{ color: error ? theming.inputError : theming.inputLabelColor }}>{label}</Text>}
           multiline={multLine}
           numberOfLines={multLine ? numLine : 1}
           secureTextEntry={isSecure}
@@ -27,55 +27,6 @@ const CustomTextInput = ({label, error, errorLabel, iconLeft, iconRight, onChang
             iconLeft ? (
               <TextInput.Icon
                 icon={iconLeft}
-                color={error ? '#a22c28' : theming.formInput}
-                style={{ marginTop: 15 }}
-                size={18}
-              />
-            ) : null
-          }
-          right={
-            iconRight ? (
-              <TextInput.Icon
-                icon={iconRight}
-                color={error ? '#a22c28' : theming.formInput}
-                onPress={handlerSenha}
-                style={{ marginTop: 15 }}
-                size={18}
-              />
-            ) : null
-          }
-          selectionColor={theming.formInput}
-          outlineColor={theming.formInput}
-          outlineStyle={{ borderRadius: 7, borderWidth: error || borderBold ? 1 : 0.3 }}
-          activeOutlineColor={theming.formInput}
-          style={{
-            height: height ? height : 45,
-            fontSize: 18,
-            backgroundColor: 'transparent',
-            width: '100%',
-            alignSelf: 'center'
-          }}
-          textColor={theming.formLabel}
-          theme={{ colors: { background: theming.cardBackground } }}
-          onChangeText={onChange}
-          value={value}
-          readOnly={readOnly}
-          onFocus={onFocus}
-          onBlur={onBlur}
-        />
-      ) : (
-        <TextInput
-          mode="outlined"
-          keyboardType={keyboardType}
-          label={<Text style={{ color: error ? theming.inputError : theming.inputLabelColor }}>{label}</Text>}
-          multiline={multLine}
-          numberOfLines={multLine ? numLine : 1}
-          secureTextEntry={isSecure}
-          error={error}
-          left={
-            iconLeft ? (
-              <TextInput.Icon
-                icon={iconLeft}
                 color={error ? theming.inputError : theming.inputIconColor}
                 style={{ marginTop: 15 }}
                 size={18}
@@ -83,15 +34,19 @@ const CustomTextInput = ({label, error, errorLabel, iconLeft, iconRight, onChang
             ) : null
           }
           right={
-            iconRight ? (
-              <TextInput.Icon
-                icon={iconRight}
-                color={error ? theming.inputError : theming.inputIconColor}
-                onPress={handlerSenha}
-                style={{ marginTop: 15 }}
-                size={18}
-              />
-            ) : null
+            true ? (
+              <ActivityIndicator animating={true} size={18} color={theming.primary} style={{ marginTop: 15 }} />
+            ) : (
+              iconRight ? (
+                <TextInput.Icon
+                  icon={iconRight}
+                  color={error ? theming.inputError : theming.inputIconColor}
+                  onPress={handlerSenha}
+                  style={{ marginTop: 15 }}
+                  size={18}
+                />
+              ) : null
+            )
           }
           selectionColor={theming.inputBorderSelectionColor}
           outlineColor={theming.inputBorderColor}
@@ -109,19 +64,71 @@ const CustomTextInput = ({label, error, errorLabel, iconLeft, iconRight, onChang
           onChangeText={onChange}
           value={value}
           readOnly={readOnly}
-          onFocus={onFocus}
-          onBlur={onBlur}
+
+        />
+      ) : (
+        <TextInput
+          mode="outlined"
+          keyboardType={keyboardType}
+          label={<Text style={{ color: error ? theming.inputError : theming.inputLabelColor }}>{label}</Text>}
+          multiline={multLine}
+          numberOfLines={multLine ? numLine : 1}
+          secureTextEntry={isSecure}
+          error={error}
+          maxLength={maxLeng? maxLeng:null}
+          left={
+            iconLeft ? (
+              <TextInput.Icon
+                icon={iconLeft}
+                color={error ? theming.inputError : theming.inputIconColor}
+                style={{ marginTop: 15 }}
+                size={18}
+              />
+            ) : null
+          }
+          right={
+            isLoadingRight ? (
+              <ActivityIndicator animating={true} size={18} color={theming.primary} style={{ marginTop: 15 }} />
+            ) : (
+              iconRight ? (
+                <TextInput.Icon
+                  icon={iconRight}
+                  color={error ? theming.inputError : theming.inputIconColor}
+                  onPress={handlerSenha}
+                  style={{ marginTop: 15 }}
+                  size={18}
+                />
+              ) : null
+            )
+          }
+          selectionColor={theming.inputBorderSelectionColor}
+          outlineColor={theming.inputBorderColor}
+          outlineStyle={{ borderRadius: 7, borderWidth: 1 }}
+          activeOutlineColor={theming.inputBorderSelectionColor}
+          style={{
+            height: height ? height : 45,
+            fontSize: 18,
+            backgroundColor: 'transparent',
+            width: '100%',
+            alignSelf: 'center'
+          }}
+          textColor={theming.inputTextColor}
+          theme={{ colors: { background: bgLabel ? bgLabel : theming.background } }}
+          onChangeText={onChange}
+          value={value}
+          readOnly={readOnly}
+
         />
       )}
       
       {error ? (
         <HelperText type="error" visible={error}>
-        {errorLabel}
-      </HelperText>
+          {errorLabel}
+        </HelperText>
       ):(
         <HelperText type="error" visible={value === ''}>
-        *Obrigatório
-      </HelperText>
+          *Obrigatório
+        </HelperText>
       )}
       
     </>

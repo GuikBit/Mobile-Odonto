@@ -22,7 +22,7 @@ const CadastroPaciente = ({subTitulo}) => {
   });
 
   return (
-    <View style={{flex: 1, backgroundColor: theming.background , marginTop: 25, }}>
+    <View style={{flex: 1, marginTop: 25 }}>
 
       <Text style={[styles.titulo, { fontSize: 24, color: theming.primary}]}>{subTitulo}</Text>
 
@@ -35,51 +35,52 @@ const CadastroPaciente = ({subTitulo}) => {
         onChange={(e) => setPaciente({ ...paciente, nome: e })}
         value={paciente.nome}
         height={45}
-        bgLabel={settings.theming === 'dark' ? '#222222' : '#e4e9ef'}
+        //bgLabel={settings.theming === 'dark' ? '#222222' : '#e4e9ef'}
       />
       <CustomTextInput
         label="Login"
         iconLeft='account'
-        error={hasErrorLogin(paciente.login)}
+        error={errors.login}
+        onBlur={hasErrorLogin(paciente.login)}
         onChange={(e) => setPaciente({ ...paciente, login: e })}
         value={paciente.login}
         height={45}
-        bgLabel={settings.theming === 'dark' ? '#222222' : '#e4e9ef'}
+        //bgLabel={settings.theming === 'dark' ? '#222222' : '#e4e9ef'}
       />
       <CustomTextInput
         label="Senha"
         iconLeft='key'
         iconRight='eye'
-        error={hasErrorSenha(paciente.senha)}
+        error={errors.senha}
+        onBlur={hasErrorSenha(paciente.senha)}
         isSecure={isSecure}
         handlerSenha={handlerSenha(isSecure, setIsSecure)}
         onChange={(e) => setPaciente({ ...paciente, senha: e })}
-        //onBlur={() => handleBlur('senha', paciente.senha)}
         value={paciente.senha}
         height={45}
-        bgLabel={settings.theming === 'dark' ? '#222222' : '#e4e9ef'}
+        //bgLabel={settings.theming === 'dark' ? '#222222' : '#e4e9ef'}
       />
       <CustomTextInput
         label="E-mail"
         iconLeft='email'
-        error={hasErrorsEmail(paciente.email)}
+        error={errors.email}
+        onBlur={hasErrorsEmail(paciente.email)}
         onChange={(e) => setPaciente({ ...paciente, email: e })}
-       //onBlur={() => handleBlur('email', paciente.email)}
         value={paciente.email}
         height={45}
-        bgLabel={settings.theming === 'dark' ? '#222222' : '#e4e9ef'}
+        //bgLabel={settings.theming === 'dark' ? '#222222' : '#e4e9ef'}
         
       />
       <CustomTextInput
         label="CPF"
         iconLeft='card-account-details'
         keyboardType='decimal-pad'
-        error={hasErrorCPF(paciente.cpf)}
+        error={errors.cpf}
+        onBlur={hasErrorCPF(paciente.cpf)}
         onChange={(e) => setPaciente({ ...paciente, cpf: e })}
-        //onBlur={() => handleBlur('cpf', paciente.cpf)}
         value={paciente.cpf}
         height={45}
-        bgLabel={settings.theming === 'dark' ? '#222222' : '#e4e9ef'}
+        //bgLabel={settings.theming === 'dark' ? '#222222' : '#e4e9ef'}
         maxLeng={14}
         mask={Masks.BRL_CPF}
         
@@ -88,12 +89,13 @@ const CadastroPaciente = ({subTitulo}) => {
         label="Telefone"
         iconLeft='phone'
         keyboardType='decimal-pad'
-        error={hasErrorTelefone(paciente.telefone)}
+        error={errors.telefone}
+        onBlur={hasErrorTelefone(paciente.telefone)}
         onChange={(e) => setPaciente({ ...paciente, telefone: e })}
         //onBlur={() => handleBlur('telefone', paciente.telefone)}
         value={paciente.telefone}
         height={45}
-        bgLabel={settings.theming === 'dark' ? '#222222' : '#e4e9ef'}
+        //bgLabel={settings.theming === 'dark' ? '#222222' : '#e4e9ef'}
         maxLeng={15}
         mask={Masks.BRL_PHONE}
       />
@@ -102,12 +104,12 @@ const CadastroPaciente = ({subTitulo}) => {
         label="Data Nascimento"
         iconLeft='calendar-blank'
         keyboardType='decimal-pad'
-        error={hasErrorDtNasc(paciente.dataNasc)}
+        error={errors.dataNasc}
+        onBlur={hasErrorDtNasc(paciente.dataNasc)}
         onChange={(e) => setPaciente({ ...paciente, dataNasc: e })}
-        //onBlur={() => handleBlur('dataNasc', paciente.dataNasc)}
         value={paciente.dataNasc}
         height={45}
-        bgLabel={settings.theming === 'dark' ? '#222222' : '#e4e9ef'}
+        //bgLabel={settings.theming === 'dark' ? '#222222' : '#e4e9ef'}
         maxLeng={10}
         mask={Masks.DATE_DDMMYYYY}
       />
@@ -124,5 +126,5 @@ const styles = StyleSheet.create({
     fontWeight: 600,
     alignSelf: 'center',
     marginBottom: 15,
-}
+  }
 })

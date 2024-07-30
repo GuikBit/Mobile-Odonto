@@ -20,20 +20,22 @@ export const handlerSenha = (isSecure: boolean, setIsSecure: (value: boolean) =>
   };
   
   export const hasErrorCPF = (cpf: string) => {
-    // Supondo que o CPF deve ter 11 dígitos
-    const cpfRegex = /^\d{11}$/;
-    return !cpfRegex.test(cpf);
+
+    return cpf === '' || null; 
   };
   
   export const hasErrorTelefone = (telefone: string) => {
-    // Supondo que o telefone deve ter pelo menos 10 dígitos
-    const telefoneRegex = /^\d{10,11}$/;
-    return !telefoneRegex.test(telefone);
+
+    return telefone === '' || null; 
   };
   
   export const hasErrorDtNasc = (dtNasc: string) => {
-    // Supondo que a data de nascimento deve estar no formato dd/mm/aaaa
-    const dateRegex = /^\d{2}\/\d{2}\/\d{4}$/;
-    return !dateRegex.test(dtNasc);
+
+    return dtNasc === '' || null;
+  };
+
+  export const hasErrorCep = (cep: string) => {
+
+    return cep === '' || null;
   };
   

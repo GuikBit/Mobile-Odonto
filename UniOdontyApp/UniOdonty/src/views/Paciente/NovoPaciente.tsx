@@ -37,43 +37,19 @@ const NovoPaciente = () => {
     
   };
 
-  // function  verificaRetorno() {
-
-  //   if(route.params.interno === true){
-  //     navigation.navigate('Lista Pacientes', {novo: true})
-  //   }
-  //   else{
-  //     navigation.navigate('Login', {novo: true})
-  //   }
-    
-    
-  // }
-  // function validaDados(){
-  //   if(paciente.nome === '' || paciente.login === '' || paciente.senha === '' ){
-  //     setVazio(true)
-  //     return false
-  //   }
-  //   return true
-  // }
-
-
-  // useFocusEffect(
-  //   useCallback(() => {
-  //     if(!isLoading){
-  //       preenchePacienteDetalhes()
-
-  //     }
-  //     return() =>{}
-  //   }, []));
-
-  //   function preenchePacienteDetalhes(){
-  //     if(!isLoading){
-  //       // console.log(datashoppi)
-  //       setPaciente(data)
-  //     }
-      
-  //   }
   const isValidInfoPessoal = () => {
+    return true;
+  }
+
+  const isValidResp = () => {
+    return true;
+  }
+
+  const isValidEndereco = () => {
+    return true;
+  }
+
+  const isValidAnamnse = () => {
     return true;
   }
 
@@ -81,7 +57,11 @@ const NovoPaciente = () => {
     if(active === 1){
       return isValidInfoPessoal();
     }else if(active === 2){
-
+      return isValidResp();
+    }else if(active === 3){
+      return isValidEndereco();
+    }else{
+      return isValidAnamnse();
     }
   }
 
@@ -89,13 +69,13 @@ const NovoPaciente = () => {
     <View style={{flex: 1, backgroundColor: theming.background}}>
       <Header titulo="Novo Paciente" voltar={true}  config={false}/>
 
-      <ScrollView style={{paddingHorizontal: 20, paddingVertical: 20}}>
+      <ScrollView style={{paddingHorizontal: 20, paddingTop: 20}}>
         <Stepper
           active={active}
           content={content}
           onBack={() => setActive((p) => p - 1)}
           onFinish={handlePostPaciente}
-          onNext={isValidForm()? () => {setActive((p) => p + 1)}: () => {}}
+          onNext={isValidForm()? () => {setActive((p) => p + 1)} : () => {}}
           buttonStyle={styles.btn}
           buttonTextStyle={styles.btnText}
           stepStyle={styles.teste}

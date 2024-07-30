@@ -12,6 +12,7 @@ import showCustomMessage from '../../components/Fragments/FlashMensage';
 // const image = { uri: 'https://img.lovepik.com/background/20211029/medium/lovepik-simple-technology-mobile-phone-wallpaper-background-image_400290776.jpg' };
 const fundoB = '../../../assets/img/FundoB3.png';
 const fundoD = '../../../assets/img/FundoD2.png';
+
 const HomeLogin = () => {
   const { mudarTheming, setSettings, settings, theming } = useContext(GlobalContext);
   const { login, user, setUser, userLogged } = useContext(AuthContext);
@@ -25,17 +26,17 @@ const HomeLogin = () => {
   })
 
   const navigation = useNavigation();
-  // useEffect(()=>{
-  //   handlerTema();
-  // },[])
+  useEffect(()=>{
+    handlerTema();
+  },[])
 
-  // const handlerTema = () => {
-  //   if (settings.theming === 'dark') {
-  //     setSettings({ ...settings, theming: 'light' });
-  //   } else {
-  //     setSettings({ ...settings, theming: 'dark' });
-  //   }
-  // };
+  const handlerTema = () => {
+    if (settings.theming === 'dark') {
+      setSettings({ ...settings, theming: 'light' });
+    } else {
+      setSettings({ ...settings, theming: 'dark' });
+    }
+  };
 
   const handlerLogin = async () =>{
     setInputErro({...inputErro, login: false, password: false})
@@ -91,31 +92,31 @@ const HomeLogin = () => {
       >
         <ScrollView style={{ flex: 1}}>
 
-          <View style={{ justifyContent: 'center', alignItems: 'center', paddingVertical: 40 }}>
+          <View style={{ justifyContent: 'center', alignItems: 'center', paddingVertical:70 }}>
             <Image style={styles.logo} source={require('../../../assets/img/odonto.png')} />
           </View>
 
-          <View style={[styles.containerForm, {backgroundColor: settings.theming === 'dark'? 'rgba(32, 112, 180, 0.25)':'"rgba(255, 255, 255, 0.45)"'}]}>
+          <View style={[styles.containerForm, {backgroundColor: settings.theming === 'dark'? 'rgba(32, 112, 180, 0.25)':'rgba(255, 255, 255, 0.45)'}]}>
 
             <View style={{  }}>
-              <CustomTextInput label="Login" iconLeft='account' error={inputErro.login} onChange={(e: any) => setUser({ ...user, login: e })} value={user.login} height={50} bgLabel={ settings.theming === 'dark'? '#222222':'#e4e9ef'} />
-              <CustomTextInput label="Senha" iconLeft='key' iconRight={isSenha ? "eye" : "eye-off"} error={inputErro.password} onChange={(e: any) => setUser({ ...user, password: e })} value={user.password} isSecure={isSenha} handlerSenha={() => { setIsSenha(!isSenha) }} height={50} bgLabel={ settings.theming === 'dark'? '#222222':'#e4e9ef'} />
+              <CustomTextInput label="Login" iconLeft='account' error={inputErro.login} onChange={(e: any) => setUser({ ...user, login: e })} value={user.login} height={50} bgLabel={ settings.theming === 'dark'? '#091c2d':'#f5f8fd'} />
+              <CustomTextInput label="Senha" iconLeft='key' iconRight={isSenha ? "eye" : "eye-off"} error={inputErro.password} onChange={(e: any) => setUser({ ...user, password: e })} value={user.password} isSecure={isSenha} handlerSenha={() => { setIsSenha(!isSenha) }} height={50} bgLabel={ settings.theming === 'dark'? '#091c2d':'#f5f8fd'} />
             </View>
 
             <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 50 }}>
               {/* <Button onPress={handlerTema} mode='contained' icon='theme-light-dark'>Modo</Button> */}
-              <Button onPress={() => { }} mode='contained' elevation={3} labelStyle={{fontSize: 16}} icon='account-plus'>Cadastrar</Button>
-              <Button onPress={()=>{handlerLogin()}} mode='contained' elevation={3} labelStyle={{fontSize: 16}} icon='login' loading={isLoading}>Acessar</Button>
+              <Button onPress={handlerTema} mode='contained' elevation={3} labelStyle={{fontSize: 16}} icon='account-plus'>Cadastrar</Button>
+              <Button onPress={handlerLogin} mode='contained' elevation={3} labelStyle={{fontSize: 16}} icon='login' loading={isLoading}>Acessar</Button>
             </View>
 
             <View style={{flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', marginTop: 35}}>
-              <View style={{width: 35, height:35, justifyContent: 'center', alignItems: 'center', elevation: 3, backgroundColor: settings.theming === 'dark'? 'rgba(32, 112, 180, 0.50)':'"rgba(255, 255, 255)"', borderRadius: 50}}>
+              <View style={{width: 35, height:35, justifyContent: 'center', alignItems: 'center', elevation: 3, backgroundColor: settings.theming === 'dark'? 'rgba(32, 112, 180, 0.50)':'rgba(255, 255, 255)', borderRadius: 50}}>
                 <Image style={styles.google} source={{uri:'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/480px-Google_%22G%22_logo.svg.png'}} />
               </View>
-              <View style={{width: 35, height:35, justifyContent: 'center', alignItems: 'center',elevation: 3, backgroundColor: settings.theming === 'dark'? 'rgba(32, 112, 180, 0.50)':'"rgba(255, 255, 255)"', borderRadius: 50}}>
+              <View style={{width: 35, height:35, justifyContent: 'center', alignItems: 'center', elevation: 3, backgroundColor: settings.theming === 'dark'? 'rgba(32, 112, 180, 0.50)':'rgba(255, 255, 255)', borderRadius: 50}}>
                 <Image style={styles.insta} source={{uri:'https://images.vexels.com/media/users/3/137197/isolated/preview/fb944c570182b6e89eb21f41f8c4522b-silhueta-colorida-do-instagram.png'}} />
               </View>
-              <View style={{width: 35, height:35, justifyContent: 'center', alignItems: 'center',elevation: 3, backgroundColor: settings.theming === 'dark'? 'rgba(32, 112, 180, 0.50)':'"rgba(255, 255, 255)"', borderRadius: 50}}>
+              <View style={{width: 35, height:35, justifyContent: 'center', alignItems: 'center', elevation: 3, backgroundColor: settings.theming === 'dark'? 'rgba(32, 112, 180, 0.50)':'rgba(255, 255, 255)', borderRadius: 50}}>
                 <Image style={styles.face} source={{uri:'https://static.vecteezy.com/system/resources/previews/018/930/476/non_2x/facebook-logo-facebook-icon-transparent-free-png.png'}} />
               </View>              
             </View>
@@ -144,6 +145,7 @@ const styles = StyleSheet.create({
   },google:{
     width: 25,
     height: 25
+
   }, insta:{
     width: 30,
     height: 30,
